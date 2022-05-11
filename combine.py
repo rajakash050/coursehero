@@ -1,4 +1,10 @@
+# Author: Akash
+# Script to get proper image names
+
 def get_pics(image_names):
+    """
+    Function to get process image names to exprected one
+    """
     # converting the string to a list format
     image_names_list = image_names.split(",")
 
