@@ -1,6 +1,14 @@
 # Author: Akash
 # Script to get proper image names
 
+def get_zeros_to_assign(total_images_of_city, already_processed_count):
+    """
+    function to get zeros to match serial numbers
+    """
+    zeros_count = len(str(total_images_of_city)) - len(str(already_processed_count))
+    return zeros_count
+
+
 def get_pics(image_names):
     """
     Function to get process image names to exprected one
@@ -17,15 +25,15 @@ def get_pics(image_names):
             temp_dict[image_names_list[i].title()].append([image_names_list[i+1], image_names_list[i-1]])
         else:
             temp_dict[image_names_list[i].title()] = [[image_names_list[i+1], image_names_list[i-1]]]
+
+        zeros_to_append = get_zeros_to_assign(image_names_list.count(image_names_list[i]), len(temp_dict[image_names_list[i]]))
+
         # checking the photo-count available for that city and creating the name accordingly
         # so that if photo count is more than 10 then the name should have "0" before serial number
-        if len(temp_dict[image_names_list[i]]) < 10 and image_names_list.count(image_names_list[i]) > 9:
-            result += image_names_list[i].title() + "0" + str(len(temp_dict[image_names_list[i]])) + "." + \
-                      image_names_list[i-1].split(".")[1] + " "
-        else:
-            # for those whose count is below 10 , "0" should not append to photoname
-            result += image_names_list[i].title() + str(len(temp_dict[image_names_list[i]])) + "." + \
-                      image_names_list[i-1].split(".")[1] + " "
+
+        result += image_names_list[i].title() + "0" * zeros_to_append + str(len(temp_dict[image_names_list[i]])) + "." \
+                  + image_names_list[i - 1].split(".")[1] + " "
+
     return result
 
 
@@ -43,6 +51,7 @@ if __name__ == '__main__':
            "10photo.jpg,Warsaw,2013-09-05 14:08:15," \
            "john.png,London,2015-06-20 15:13:22,myFriends.png,Warsaw,2013-09-05 14:07:13, Eiffel.jpg, Paris, " \
            "2015-07-23 08:03:02"
+    
     get_image_names = get_pics(random_image_names)
     
     # final output which is expected
