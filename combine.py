@@ -51,8 +51,6 @@ if __name__ == '__main__':
            "10photo.jpg,Warsaw,2013-09-05 14:08:15," \
            "john.png,London,2015-06-20 15:13:22,myFriends.png,Warsaw,2013-09-05 14:07:13, Eiffel.jpg, Paris, " \
            "2015-07-23 08:03:02"
-    
     get_image_names = get_pics(random_image_names)
-    
     # final output which is expected
     print(get_image_names)
